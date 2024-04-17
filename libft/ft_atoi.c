@@ -6,13 +6,13 @@
 /*   By: maugusto <maugusto@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/09 12:05:29 by gude-jes          #+#    #+#             */
-/*   Updated: 2024/04/16 12:14:15 by maugusto         ###   ########.fr       */
+/*   Updated: 2024/04/17 09:41:40 by maugusto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_atoi(char *str)
+int	ft_atoi(const char *str)
 {
 	int	number;
 	int	i;

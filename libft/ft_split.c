@@ -6,7 +6,7 @@
 /*   By: maugusto <maugusto@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/16 13:23:48 by maugusto          #+#    #+#             */
-/*   Updated: 2024/04/16 13:24:06 by maugusto         ###   ########.fr       */
+/*   Updated: 2024/04/16 13:36:47 by maugusto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ char	**free_array(char **ptr, int i)
 	return (0);
 }
 
-int	ft_count_words(char const *str, char c)
+int	count_words(char const *str, char c)
 {
 	int	i;
 	int	count;
@@ -44,14 +44,14 @@ int	ft_count_words(char const *str, char c)
 	return (count);
 }
 
-char	*ft_putword(char *word, char const *s, int i, int word_len)
+char	*write_word(char *word, char const *str, int i, int word_len)
 {
 	int	j;
 
 	j = 0;
 	while (word_len > 0)
 	{
-		word[j] = s[i - word_len];
+		word[j] = str[i - word_len];
 		j++;
 		word_len--;
 	}
@@ -59,7 +59,7 @@ char	*ft_putword(char *word, char const *s, int i, int word_len)
 	return (word);
 }
 
-char	**ft_split_words(char const *s, char c, char **s2, int num_words)
+char	**split_words(char const *str, char c, char **strings, int num_words)
 {
 	int	i;
 	int	word;
@@ -70,35 +70,35 @@ char	**ft_split_words(char const *s, char c, char **s2, int num_words)
 	word_len = 0;
 	while (word < num_words)
 	{
-		while (s[i] && s[i] == c)
+		while (str[i] && str[i] == c)
 			i++;
-		while (s[i] && s[i] != c)
+		while (str[i] && str[i] != c)
 		{
 			i++;
 			word_len++;
 		}
-		s2[word] = (char *)malloc(sizeof(char) * (word_len + 1));
-		if (!s2)
-			return (free_array(s2, word));
-		ft_putword(s2[word], s, i, word_len);
+		strings[word] = (char *)malloc(sizeof(char) * (word_len + 1));
+		if (!strings)
+			return (free_array(strings, word));
+		write_word(strings[word], str, i, word_len);
 		word_len = 0;
 		word++;
 	}
-	s2[word] = 0;
-	return (s2);
+	strings[word] = 0;
+	return (strings);
 }
 
-char	**ft_split(char const *s, char c)
+char	**ft_split(char const *str, char c)
 {
-	char			**s2;
+	char			**strings;
 	unsigned int	num_words;
 
-	if (!s)
+	if (!str)
 		return (0);
-	num_words = ft_count_words(s, c);
-	s2 = (char **)malloc(sizeof(char *) * (num_words + 1));
-	if (!s2)
+	num_words = count_words(str, c);
+	strings = (char **)malloc(sizeof(char *) * (num_words + 1));
+	if (!strings)
 		return (0);
-	s2 = ft_split_words(s, c, s2, num_words);
-	return (s2);
+	strings = split_words(str, c, strings, num_words);
+	return (strings);
 }

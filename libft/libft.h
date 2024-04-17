@@ -6,7 +6,7 @@
 /*   By: maugusto <maugusto@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/01 13:37:27 by dot               #+#    #+#             */
-/*   Updated: 2024/04/16 12:18:00 by maugusto         ###   ########.fr       */
+/*   Updated: 2024/04/17 09:53:21 by maugusto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ void	ft_putnbr_fd(int n, int fd);
 void	ft_putstr_fd(char *s, int fd);
 void	ft_striteri(char *s, void (*f)(unsigned int, char*));
 
-int		ft_atoi(char *str);
+int		ft_atoi(const char *str);
 int		ft_isalnum(int c);
 int		ft_isalpha(int c);
 int		ft_isascii(int c);
@@ -43,7 +43,7 @@ int		ft_isdigit(int c);
 int		ft_isprint(int c);
 int		ft_memcmp(const void *s1, const void *s2, size_t n);
 size_t	ft_strlcat(char *dst, const char *src, size_t n);
-int		ft_strlcpy(char *dst, const char *src, int n);
+size_t	ft_strlcpy(char *dst, const char *src, size_t n);
 size_t	ft_strlen(char const *str);
 int		ft_strncmp(char const *s1, char const *s2, size_t n);
 int		ft_tolower(int c);

@@ -6,7 +6,7 @@
 /*   By: maugusto <maugusto@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/09 12:18:19 by gude-jes          #+#    #+#             */
-/*   Updated: 2024/04/16 10:12:30 by maugusto         ###   ########.fr       */
+/*   Updated: 2024/04/17 13:11:29 by maugusto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ char	*ft_strnstr(const char *big, const char *little, size_t len)
 	i = 0;
 	if (!big || !little)
 		return (NULL);
-	if (!little || !little[0])
+	if (!little[0])
 		return ((char *)big);
 	while (big[i] && i < len)
 	{

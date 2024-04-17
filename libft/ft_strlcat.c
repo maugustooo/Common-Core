@@ -6,7 +6,7 @@
 /*   By: maugusto <maugusto@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/09 12:18:09 by gude-jes          #+#    #+#             */
-/*   Updated: 2024/04/16 12:15:44 by maugusto         ###   ########.fr       */
+/*   Updated: 2024/04/16 13:59:06 by maugusto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,3 +37,8 @@ size_t	ft_strlcat(char *dst, const char *src, size_t size)
 		dest_length = size;
 	return (dest_length + src_length);
 }
+
+// int main()
+// {
+// 	printf("%zu", ft_strlcat("ola", "ta tudo", 10));
+// }
