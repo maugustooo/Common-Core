@@ -6,7 +6,7 @@
 /*   By: maugusto <maugusto@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/09 12:16:17 by gude-jes          #+#    #+#             */
-/*   Updated: 2024/04/17 10:22:59 by maugusto         ###   ########.fr       */
+/*   Updated: 2024/04/18 09:45:53 by maugusto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,6 @@ void	*ft_calloc(size_t nmemb, size_t size)
 {
 	void	*ptr;
 
-	if (nmemb == 0 || size == 0)
-		return (NULL);
 	ptr = (void *)malloc(nmemb * size);
 	if (!ptr)
 		return (NULL);

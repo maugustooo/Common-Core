@@ -6,7 +6,7 @@
 #    By: maugusto <maugusto@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/04/09 12:18:36 by gude-jes          #+#    #+#              #
-#    Updated: 2024/04/17 12:47:49 by maugusto         ###   ########.fr        #
+#    Updated: 2024/04/18 10:40:28 by maugusto         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,11 +21,10 @@ SRCS			=	ft_strlen.c ft_isalnum.c ft_isprint.c ft_memcmp.c \
 					ft_strtrim.c ft_split.c ft_putstr_fd.c \
 					ft_itoa.c ft_putnbr_fd.c ft_putendl_fd.c \
 					ft_strmapi.c \
-					ft_lstnew.c ft_lstadd_front.c ft_lstlast.c \
+					
+BONUS			=	ft_lstnew.c ft_lstadd_front.c ft_lstlast.c \
 					ft_lstadd_back.c ft_lstclear.c ft_lstdelone.c \
-					ft_lstsize.c ft_lstiter.c \
-
-BONUS			= 
+					ft_lstsize.c ft_lstiter.c ft_lstmap.c \
 
 OBJS = $(SRCS:.c=.o)
 BONUS_OBJS = $(BONUS:.c=.o)
@@ -36,14 +35,11 @@ CFLAGS			= -Wall -Wextra -Werror
 
 NAME			= libft.a
 
-
-
 all:			$(NAME)
 
 $(NAME):		
 				$(CC) $(CFLAGS) -c $(SRCS)
 				ar rcs $(NAME) $(OBJS)
-				ranlib $(NAME)
 
 debug: CFLAGS += -g
 debug: $(NAME)
