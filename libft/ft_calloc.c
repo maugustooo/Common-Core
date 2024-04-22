@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_calloc.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: maugusto <maugusto@student.42.fr>          +#+  +:+       +#+        */
+/*   By: maugusto <maugusto@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/09 12:16:17 by gude-jes          #+#    #+#             */
-/*   Updated: 2024/04/18 09:45:53 by maugusto         ###   ########.fr       */
+/*   Updated: 2024/04/19 19:43:38 by maugusto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@ void	*ft_calloc(size_t nmemb, size_t size)
 {
 	void	*ptr;
 
+	if ((nmemb > 2147483647 && size != 0) || (size > 2147483647 && nmemb != 0))
+		return (0);
 	ptr = (void *)malloc(nmemb * size);
 	if (!ptr)
 		return (NULL);

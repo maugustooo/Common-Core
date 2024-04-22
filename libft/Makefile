@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: maugusto <maugusto@student.42.fr>          +#+  +:+       +#+         #
+#    By: maugusto <maugusto@student.42porto.com>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/04/09 12:18:36 by gude-jes          #+#    #+#              #
-#    Updated: 2024/04/18 10:40:28 by maugusto         ###   ########.fr        #
+#    Updated: 2024/04/19 19:40:31 by maugusto         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -41,10 +41,9 @@ $(NAME):
 				$(CC) $(CFLAGS) -c $(SRCS)
 				ar rcs $(NAME) $(OBJS)
 
-debug: CFLAGS += -g
-debug: $(NAME)
-	gcc -g -o debug_$(basename $(FILE)) $(FILE) -L. -lft
-	gdb -tui ./debug_$(basename $(FILE))
+so:
+	$(CC) -nostartfiles -fPIC $(CFLAGS) $(SRCS) $(BONUS)
+	gcc -nostartfiles -shared -o libft.so $(OBJS) $(BONUS_OBJS)
 
 main : all
 	$(CC) $(CFLAGS) -L. $(NAME) 

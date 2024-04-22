@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_memmove.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: maugusto <maugusto@student.42.fr>          +#+  +:+       +#+        */
+/*   By: maugusto <maugusto@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/09 12:17:18 by gude-jes          #+#    #+#             */
-/*   Updated: 2024/04/18 10:52:47 by maugusto         ###   ########.fr       */
+/*   Updated: 2024/04/19 19:45:04 by maugusto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,13 +26,3 @@ void	*ft_memmove(void *dest, const void *src, size_t n)
 		ft_memcpy(d, s, n);
 	return (dest);
 }
-// int main ()
-// {
-// 	char	src[] = "lorem ipsum dolor sit amet";
-// 	char	*dest;
-// 	int		arg;
-// 		if (dest != ft_memmove(dest, "consectetur", 5))
-// 			write(1, "dest's adress was not returned\n", 31);
-// 		write(1, dest, 22);
-// 	printf("%s", (char *)ft_memmove("Marco", "marcoo", 6));
-// }

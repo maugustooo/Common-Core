@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strnstr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: maugusto <maugusto@student.42.fr>          +#+  +:+       +#+        */
+/*   By: maugusto <maugusto@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/09 12:18:19 by gude-jes          #+#    #+#             */
-/*   Updated: 2024/04/17 13:11:29 by maugusto         ###   ########.fr       */
+/*   Updated: 2024/04/19 19:47:30 by maugusto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,9 @@ char	*ft_strnstr(const char *big, const char *little, size_t len)
 	size_t	i;
 	size_t	j;
 
+	if (!big && len == 0)
+		return (0);
 	i = 0;
-	if (!big || !little)
-		return (NULL);
 	if (!little[0])
 		return ((char *)big);
 	while (big[i] && i < len)

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strlcat.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: maugusto <maugusto@student.42.fr>          +#+  +:+       +#+        */
+/*   By: maugusto <maugusto@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/09 12:18:09 by gude-jes          #+#    #+#             */
-/*   Updated: 2024/04/16 13:59:06 by maugusto         ###   ########.fr       */
+/*   Updated: 2024/04/19 19:46:05 by maugusto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@ size_t	ft_strlcat(char *dst, const char *src, size_t size)
 	size_t	dest_length;
 	size_t	src_length;
 
+	if (!dst && size == 0)
+		return (0);
 	src_length = ft_strlen(src);
 	dest_length = ft_strlen(dst);
 	j = dest_length;
@@ -37,8 +39,3 @@ size_t	ft_strlcat(char *dst, const char *src, size_t size)
 		dest_length = size;
 	return (dest_length + src_length);
 }
-
-// int main()
-// {
-// 	printf("%zu", ft_strlcat("ola", "ta tudo", 10));
-// }

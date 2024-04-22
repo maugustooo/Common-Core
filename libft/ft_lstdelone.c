@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_lstdelone.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: maugusto <maugusto@student.42.fr>          +#+  +:+       +#+        */
+/*   By: maugusto <maugusto@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 12:07:42 by maugusto          #+#    #+#             */
-/*   Updated: 2024/04/17 12:33:59 by maugusto         ###   ########.fr       */
+/*   Updated: 2024/04/19 19:48:54 by maugusto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 void	ft_lstdelone(t_list *lst, void (*del)(void*))
 {
 	if (!del)
-		return;
+		return ;
 	if (lst)
 	{
 		(*del)(lst -> content);
