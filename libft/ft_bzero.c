@@ -6,7 +6,7 @@
 /*   By: maugusto <maugusto@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/09 12:05:36 by gude-jes          #+#    #+#             */
-/*   Updated: 2024/04/19 15:09:08 by maugusto         ###   ########.fr       */
+/*   Updated: 2024/04/23 11:45:51 by maugusto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	ft_bzero(void *str, size_t n)
 	i = 0;
 	while (i < n)
 	{
-		s[i] = '\0';
+		s[i] = 0;
 		i++;
 	}
 }

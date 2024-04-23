@@ -6,7 +6,7 @@
 /*   By: maugusto <maugusto@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 11:38:18 by maugusto          #+#    #+#             */
-/*   Updated: 2024/04/19 15:11:21 by maugusto         ###   ########.fr       */
+/*   Updated: 2024/04/22 14:11:37 by maugusto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	ft_lstadd_back(t_list **lst, t_list *new)
 {
-	t_list	*node;
+	t_list	*last;
 
 	if (!new)
 		return ;
@@ -23,6 +23,6 @@ void	ft_lstadd_back(t_list **lst, t_list *new)
 		*lst = new;
 		return ;
 	}
-	node = ft_lstlast(*lst);
-	node -> next = new;
+	last = ft_lstlast(*lst);
+	last -> next = new;
 }

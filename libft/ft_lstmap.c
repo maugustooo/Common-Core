@@ -6,7 +6,7 @@
 /*   By: maugusto <maugusto@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 14:30:12 by maugusto          #+#    #+#             */
-/*   Updated: 2024/04/19 19:54:55 by maugusto         ###   ########.fr       */
+/*   Updated: 2024/04/23 10:04:48 by maugusto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))
 {
 	t_list	*new_list;
 	t_list	*new_node;
-	void	*new_content;
+	void	*set;
 
 	if (!lst || !f || !del)
 		return (NULL);
@@ -24,11 +24,11 @@ t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))
 	new_node = NULL;
 	while (lst)
 	{
-		new_content = f(lst->content);
-		new_node = ft_lstnew(new_content);
+		set = f(lst->content);
+		new_node = ft_lstnew(set);
 		if (!new_node)
 		{
-			del(new_node);
+			del(set);
 			ft_lstclear(&new_list, del);
 			return (new_list);
 		}

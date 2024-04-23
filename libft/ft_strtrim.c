@@ -6,13 +6,13 @@
 /*   By: maugusto <maugusto@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/09 12:18:24 by gude-jes          #+#    #+#             */
-/*   Updated: 2024/04/19 19:47:46 by maugusto         ###   ########.fr       */
+/*   Updated: 2024/04/23 11:08:48 by maugusto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_char_in_set(char c, char const *set)
+static int	ft_char_in_set(char c, char const *set)
 {
 	size_t	i;
 

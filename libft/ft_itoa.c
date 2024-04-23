@@ -6,13 +6,13 @@
 /*   By: maugusto <maugusto@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/09 12:16:40 by gude-jes          #+#    #+#             */
-/*   Updated: 2024/04/19 19:44:49 by maugusto         ###   ########.fr       */
+/*   Updated: 2024/04/23 11:45:18 by maugusto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_size(long int n)
+static int	ft_size(long int n)
 {
 	int	count;
 
@@ -48,13 +48,8 @@ char	*ft_itoa(int n)
 		str[0] = '0';
 	while (num > 0)
 	{
-		str[len--] = '0' + (num % 10);
+		str[len--] = (num % 10) + 48;
 		num = (num / 10);
 	}
 	return (str);
 }
-
-// int main()
-// {
-// 	printf("%s \n", ft_itoa(-100));
-// }

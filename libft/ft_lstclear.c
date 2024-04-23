@@ -6,7 +6,7 @@
 /*   By: maugusto <maugusto@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 12:19:41 by maugusto          #+#    #+#             */
-/*   Updated: 2024/04/19 19:50:04 by maugusto         ###   ########.fr       */
+/*   Updated: 2024/04/22 15:48:14 by maugusto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,18 +14,18 @@
 
 void	ft_lstclear(t_list **lst, void (*del)(void*))
 {
-	t_list	*node;
+	t_list	*current;
+	t_list	*temp;
 
-	if (!del)
+	if (!del || !lst)
 		return ;
-	if (lst)
+	current = *lst;
+	while (current)
 	{
-		while (*lst)
-		{
-			node = (*lst)-> next;
-			(*del)((*lst)-> content);
-			free(*lst);
-			*lst = node;
-		}
+		temp = current;
+		current = current -> next;
+		del(temp -> content);
+		free(temp);
 	}
+	*lst = NULL;
 }

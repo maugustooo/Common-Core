@@ -6,7 +6,7 @@
 #    By: maugusto <maugusto@student.42porto.com>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/04/09 12:18:36 by gude-jes          #+#    #+#              #
-#    Updated: 2024/04/19 19:40:31 by maugusto         ###   ########.fr        #
+#    Updated: 2024/04/23 11:13:28 by maugusto         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -41,9 +41,9 @@ $(NAME):
 				$(CC) $(CFLAGS) -c $(SRCS)
 				ar rcs $(NAME) $(OBJS)
 
-so:
-	$(CC) -nostartfiles -fPIC $(CFLAGS) $(SRCS) $(BONUS)
-	gcc -nostartfiles -shared -o libft.so $(OBJS) $(BONUS_OBJS)
+# so:
+# 	$(CC) -nostartfiles -fPIC $(CFLAGS) $(SRCS) $(BONUS)
+# 	gcc -nostartfiles -shared -o libft.so $(OBJS) $(BONUS_OBJS)
 
 main : all
 	$(CC) $(CFLAGS) -L. $(NAME) 
@@ -52,7 +52,7 @@ clean:
 				$(RM) $(OBJS) $(BONUS_OBJS)
 
 fclean:			clean
-				$(RM) $(NAME)
+				$(RM) $(NAME) a.out
 
 re:				fclean $(NAME)
 
