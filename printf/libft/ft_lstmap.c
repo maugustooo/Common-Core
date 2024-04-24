@@ -1,36 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strnstr.c                                       :+:      :+:    :+:   */
+/*   ft_lstmap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: maugusto <maugusto@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/09 12:18:19 by gude-jes          #+#    #+#             */
-/*   Updated: 2024/04/24 14:01:28 by maugusto         ###   ########.fr       */
+/*   Created: 2024/04/17 14:30:12 by maugusto          #+#    #+#             */
+/*   Updated: 2024/04/23 10:04:48 by maugusto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strnstr(const char *big, const char *little, size_t len)
+t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))
 {
-	size_t	i;
-	size_t	j;
+	t_list	*new_list;
+	t_list	*new_node;
+	void	*set;
 
-	if (!big && len == 0)
-		return (0);
-	i = 0;
-	if (!little[0])
-		return ((char *)big);
-	while (big[i] && i < len)
+	if (!lst || !f || !del)
+		return (NULL);
+	new_list = NULL;
+	new_node = NULL;
+	while (lst)
 	{
-		j = 0;
-		while (big[i + j] && little[j]
-			&& i + j < len && big[i + j] == little[j])
-			j++;
-		if (!little[j])
-			return ((char *)(big + i));
-		i++;
+		set = f(lst->content);
+		new_node = ft_lstnew(set);
+		if (!new_node)
+		{
+			del(set);
+			ft_lstclear(&new_list, del);
+			return (new_list);
+		}
+		ft_lstadd_back(&new_list, new_node);
+		lst = lst->next;
 	}
-	return (NULL);
+	return (new_list);
 }

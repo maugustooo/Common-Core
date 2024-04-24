@@ -1,36 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strnstr.c                                       :+:      :+:    :+:   */
+/*   ft_lstsize.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: maugusto <maugusto@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/09 12:18:19 by gude-jes          #+#    #+#             */
-/*   Updated: 2024/04/24 14:01:28 by maugusto         ###   ########.fr       */
+/*   Created: 2024/04/17 11:25:20 by maugusto          #+#    #+#             */
+/*   Updated: 2024/04/19 15:12:03 by maugusto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strnstr(const char *big, const char *little, size_t len)
+int	ft_lstsize(t_list *lst)
 {
-	size_t	i;
-	size_t	j;
+	t_list	*node;
+	int		i;
 
-	if (!big && len == 0)
-		return (0);
+	node = lst;
 	i = 0;
-	if (!little[0])
-		return ((char *)big);
-	while (big[i] && i < len)
+	while (node)
 	{
-		j = 0;
-		while (big[i + j] && little[j]
-			&& i + j < len && big[i + j] == little[j])
-			j++;
-		if (!little[j])
-			return ((char *)(big + i));
 		i++;
+		node = node -> next;
 	}
-	return (NULL);
+	return (i);
 }
