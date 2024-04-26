@@ -6,7 +6,7 @@
 /*   By: maugusto <maugusto@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/24 10:35:55 by maugusto          #+#    #+#             */
-/*   Updated: 2024/04/26 12:36:06 by maugusto         ###   ########.fr       */
+/*   Updated: 2024/04/26 14:10:45 by maugusto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,6 @@
 int		ft_printf(const char *str, ...);
 int		ft_putchar(char c);
 int		ft_put_hex(unsigned int nbr, char *base);
-int		ft_putstr(char *str);
 int		ft_putstr(char *str);
 int		ft_printnbr(int nbr);
 int		ft_printnbr_u(unsigned int nbr);

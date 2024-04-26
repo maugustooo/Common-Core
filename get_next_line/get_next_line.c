@@ -6,18 +6,17 @@
 /*   By: maugusto <maugusto@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/25 14:05:35 by maugusto          #+#    #+#             */
-/*   Updated: 2024/04/26 14:08:34 by maugusto         ###   ########.fr       */
+/*   Updated: 2024/04/26 15:19:13 by maugusto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-char	*free_buffer(char *res, char *buffer)
+char	*ft_free(char *stash, char *buffer)
 {
-	char	*temp;
-
-	temp = ft_strjoin(res, buffer);
-	return (temp);
+	free(stash);
+	free(buffer);
+	return (NULL);
 }
 
 char	*ft_next(char *buffer)
@@ -43,31 +42,26 @@ char	*ft_next(char *buffer)
 	return (line);
 }
 
-char	*read_file(int fd, char *res)
+char	*read_file(int fd, char *stash)
 {
 	char	*buffer;
 	int		bytes_read;
 
-	if (!res)
-		res = ft_calloc(1, 1);
+	if (!stash)
+		stash = ft_calloc(1, 1);
 	buffer = ft_calloc(BUFFER_SIZE + 1, sizeof(char));
 	if (buffer == NULL)
 		return (NULL);
-	bytes_read = read(fd, buffer, BUFFER_SIZE);
-	while (bytes_read > 0)
+	bytes_read = BUFFER_SIZE;
+	while (bytes_read != 0)	
 	{
+		bytes_read = read(fd, buffer, BUFFER_SIZE);
 		if (bytes_read == -1)
-		{
-			free(buffer);
-			return (NULL);
-		}
-		buffer[bytes_read] = 0;
-		res = free_buffer(res, buffer);
-		if (ft_strchr(buffer, '\n'))
-			break ;
+			ft_free(stash, buffer);
+		buffer[bytes_read] = '\0';
+		stash = ft_strjoin(stash, buffer);
 	}
-	free(buffer);
-	return (res);
+	return (stash);
 }
 
 char	*ft_line(char *buffer)
@@ -92,20 +86,20 @@ char	*ft_line(char *buffer)
 
 char	*get_next_line(int fd)
 {
-	static char	*buffer;
+	static char	*stash;
 	char		*line;
 
 	if (fd < 0 || BUFFER_SIZE <= 0 || read(fd, 0, 0) < 0)
 		return (NULL);
-	buffer = read_file(fd, buffer);
-	if (buffer == NULL)
+	stash = read_file(fd, stash);
+	if (stash == NULL)
 		return (NULL);
-	line = ft_line(buffer);
-	buffer = ft_next(buffer);
+	line = ft_line(stash);
+	stash = ft_next(stash);
 	return (line);
 }
 
-
+/*
 #include <fcntl.h>
 
 int main() {
@@ -196,4 +190,4 @@ int main() {
 		
 // 	ft_bzero (ptr, nmemb * size);
 // 	return (ptr);
-// }
+// }*/
