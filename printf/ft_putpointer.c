@@ -6,53 +6,41 @@
 /*   By: maugusto <maugusto@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/24 12:55:37 by maugusto          #+#    #+#             */
-/*   Updated: 2024/04/25 16:21:08 by maugusto         ###   ########.fr       */
+/*   Updated: 2024/04/26 12:37:27 by maugusto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-static int	count_hex(unsigned int n)
+int	putptrhex(unsigned long nbr, const char c)
 {
-	int	i;
+	char	*base;
+	int		result;
 
-	i = 0;
-	if (i == 0)
-		return (1);
-	while (n > 0)
+	result = 0;
+	if (c == 'x')
+		base = "0123456789abcdef";
+	else if (c == 'X')
+		base = "0123456789ABCDEF";
+	if (nbr >= 16)
 	{
-		n /= 16;
-		i++;
+		result += putptrhex((nbr / 16), c);
+		result += putptrhex((nbr % 16), c);
 	}
-	return (i);
+	else
+	{
+		result += write(1, &base[nbr], 1);
+	}
+	return (result);
 }
 
-static	char	*hex_to_str(unsigned int n, char *base)
+int	ft_putpointer(unsigned long nbr)
 {
-	int		size;
-	char	*hex;
+	int		result;
 
-	size = count_hex(n);
-	hex = malloc(sizeof(char *) * size + 1);
-	if (!hex)
-		return (NULL);
-	hex[size] = '\0';
-	while (size > 0)
-	{
-		hex[size --] = base[n % 16];
-		n /= 16;
-	}
-	return (hex);
-}
-
-int	ft_putpointer(void *nbr, char *base)
-{
-	int				len;
-	char			*str;
-	unsigned long	n;
-
-	n = (unsigned long)nbr;
-	str = hex_to_str(n, base);
-	len = ft_putstr(str);
-	return (len);
+	result = 0;
+	if (!nbr)
+		return (write(1, "(null)", 6));
+	result += putptrhex(nbr, 'x');
+	return (result);
 }

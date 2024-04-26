@@ -6,7 +6,7 @@
 /*   By: maugusto <maugusto@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/24 12:27:43 by maugusto          #+#    #+#             */
-/*   Updated: 2024/04/24 14:28:25 by maugusto         ###   ########.fr       */
+/*   Updated: 2024/04/26 12:40:36 by maugusto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ static int	count_hex(unsigned int n)
 	int	i;
 
 	i = 0;
-	if (i == 0)
+	if (n == 0)
 		return (1);
 	while (n > 0)
 	{
@@ -33,13 +33,13 @@ static	char	*hex_to_str(unsigned int n, char *base)
 	char	*hex;
 
 	size = count_hex(n);
-	hex = malloc(sizeof(char *) * size + 1);
+	hex = (char *)malloc(sizeof(char *) * size + 1);
 	if (!hex)
 		return (NULL);
 	hex[size] = '\0';
 	while (size > 0)
 	{
-		hex[size --] = base[n % 16];
+		hex[--size] = base[n % 16];
 		n /= 16;
 	}
 	return (hex);

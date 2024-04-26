@@ -6,7 +6,7 @@
 /*   By: maugusto <maugusto@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/25 15:03:37 by maugusto          #+#    #+#             */
-/*   Updated: 2024/04/25 17:36:48 by maugusto         ###   ########.fr       */
+/*   Updated: 2024/04/26 10:18:19 by maugusto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 # include <sys/types.h>
 # include <sys/uio.h>
 # include <unistd.h>
-#include <stdio.h>
+# include <stdio.h>
 
 char	*get_next_line(int fd);
 

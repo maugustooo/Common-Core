@@ -6,7 +6,7 @@
 /*   By: maugusto <maugusto@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/16 12:08:26 by maugusto          #+#    #+#             */
-/*   Updated: 2024/04/24 14:24:13 by maugusto         ###   ########.fr       */
+/*   Updated: 2024/04/26 12:40:32 by maugusto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,4 +52,14 @@ int	ft_printnbr_u(unsigned int nbr)
 	len = ft_putstr(str);
 	free(str);
 	return (len);
+}
+
+size_t	ft_strlen(char const *str)
+{
+	int	i;
+
+	i = 0;
+	while (str[i])
+		i++;
+	return (i);
 }

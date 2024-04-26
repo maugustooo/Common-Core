@@ -6,13 +6,13 @@
 /*   By: maugusto <maugusto@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/25 15:04:39 by maugusto          #+#    #+#             */
-/*   Updated: 2024/04/25 17:39:48 by maugusto         ###   ########.fr       */
+/*   Updated: 2024/04/26 10:21:59 by maugusto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-char	*ft_strjoin(char  *s1, char  *s2)
+char	*ft_strjoin(char *s1, char *s2)
 {
 	int		sizetotal;
 	char	*res;
@@ -58,6 +58,7 @@ size_t	ft_strlen(char const *str)
 		i++;
 	return (i);
 }
+
 void	ft_bzero(void *str, size_t n)
 {
 	size_t			i;
@@ -81,7 +82,6 @@ void	*ft_calloc(size_t nmemb, size_t size)
 	ptr = (void *)malloc(nmemb * size);
 	if (!ptr)
 		return (NULL);
-		
 	ft_bzero (ptr, nmemb * size);
 	return (ptr);
 }
