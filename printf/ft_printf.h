@@ -6,7 +6,7 @@
 /*   By: maugusto <maugusto@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/24 10:35:55 by maugusto          #+#    #+#             */
-/*   Updated: 2024/04/26 14:10:45 by maugusto         ###   ########.fr       */
+/*   Updated: 2024/04/29 15:47:49 by maugusto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,12 +20,14 @@
 
 int		ft_printf(const char *str, ...);
 int		ft_putchar(char c);
-int		ft_put_hex(unsigned int nbr, char *base);
+int		puthex(unsigned long nbr, char *base);
+// int		ft_put_hex(unsigned int nbr, char *base);
 int		ft_putstr(char *str);
 int		ft_printnbr(int nbr);
 int		ft_printnbr_u(unsigned int nbr);
 int		ft_putpointer(unsigned long nbr);
 size_t	ft_strlen(char const *str);
+int		ft_uitoa(unsigned int n);
 char	*ft_itoa(int n);
 
 #endif

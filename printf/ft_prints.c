@@ -6,7 +6,7 @@
 /*   By: maugusto <maugusto@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/16 12:08:26 by maugusto          #+#    #+#             */
-/*   Updated: 2024/04/26 12:40:32 by maugusto         ###   ########.fr       */
+/*   Updated: 2024/04/29 15:35:51 by maugusto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,10 +23,7 @@ int	ft_putstr(char *str)
 	int	len;
 
 	if (!str)
-	{
-		write (1, "(null)", 6);
-		return (6);
-	}
+		return (write (1, "(null)", 6));
 	len = ft_strlen(str);
 	write (1, str, len);
 	return (len);
@@ -47,7 +44,9 @@ int	ft_printnbr_u(unsigned int nbr)
 {
 	char	*str;
 	int		len;
-
+	int result;
+	
+	result = 0;
 	str = ft_itoa(nbr);
 	len = ft_putstr(str);
 	free(str);

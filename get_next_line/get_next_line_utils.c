@@ -6,82 +6,86 @@
 /*   By: maugusto <maugusto@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/25 15:04:39 by maugusto          #+#    #+#             */
-/*   Updated: 2024/04/26 10:21:59 by maugusto         ###   ########.fr       */
+/*   Updated: 2024/04/29 15:53:59 by maugusto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-char	*ft_strjoin(char *s1, char *s2)
-{
-	int		sizetotal;
-	char	*res;
-	int		i;
-	int		j;
-
-	i = 0;
-	sizetotal = ft_strlen(s1) + ft_strlen(s2);
-	res = malloc(sizeof(char) * (sizetotal + 1));
-	if (!res || !s1 || !s2)
-		return (NULL);
-	while (s1[i] != 0)
-	{
-		res[i] = s1[i];
-		i++;
-	}
-	j = 0;
-	while (s2[j] != 0)
-	{
-		res[i] = s2[j];
-		i++;
-		j++;
-	}
-	res[sizetotal] = 0;
-	return (res);
-}
-
-char	*ft_strchr(const char *s, int c)
-{
-	while (*s && *s != (char )c)
-		s++;
-	if (*s == (char )c || !c)
-		return ((char *) s);
-	return (NULL);
-}
-
-size_t	ft_strlen(char const *str)
+size_t	ft_strlen(char *s)
 {
 	int	i;
 
 	i = 0;
-	while (str[i])
+	while (s[i])
 		i++;
 	return (i);
 }
 
-void	ft_bzero(void *str, size_t n)
+char	*ft_substr(char *s, unsigned int start, size_t len)
 {
-	size_t			i;
-	unsigned char	*s;
+	size_t	i;
+	char	*str;
 
-	s = (unsigned char *)str;
+	if (!s)
+		return (NULL);
+	if (start > ft_strlen(s))
+		return (ft_strdup(""));
+	if (len > ft_strlen(s + start))
+		len = ft_strlen(s + start);
+	str = malloc((len + 1) * sizeof(char));
+	if (!str)
+		return (NULL);
 	i = 0;
-	while (i < n)
+	while (i < len)
 	{
-		s[i] = 0;
+		str[i] = s[start + i];
 		i++;
 	}
+	str[i] = 0;
+	return (str);
 }
 
-void	*ft_calloc(size_t nmemb, size_t size)
+char	*ft_strdup(char *s1)
 {
-	void	*ptr;
+	char			*dest;
+	unsigned int	i;
 
-	if ((nmemb > 2147483647 && size != 0) || (size > 2147483647 && nmemb != 0))
-		return (0);
-	ptr = (void *)malloc(nmemb * size);
-	if (!ptr)
+	dest = (char *) malloc(ft_strlen(s1) + 1);
+	if (!dest)
 		return (NULL);
-	ft_bzero (ptr, nmemb * size);
-	return (ptr);
+	i = 0;
+	while (s1[i])
+	{
+		dest[i] = s1[i];
+		i++;
+	}
+	dest[i] = 0;
+	return (dest);
+}
+
+char	*ft_strjoin(char *s1, char *s2)
+{
+	char			*res;
+
+	res = (char *) malloc((ft_strlen(s1) + ft_strlen(s2) + 1) * sizeof(char));
+	if (!res)
+		return (NULL);
+	fill_str(res, s1, s2);
+	return (res);
+}
+
+void	fill_str(char *res, char *s1, char *s2)
+{
+	unsigned int	i;
+	unsigned int	j;
+
+	i = 0;
+	j = 0;
+	while (s1[j])
+		res[i++] = s1[j++];
+	j = 0;
+	while (s2[j])
+		res[i++] = s2[j++];
+	res[i] = '\0';
 }

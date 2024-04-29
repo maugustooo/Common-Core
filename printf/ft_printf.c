@@ -6,7 +6,7 @@
 /*   By: maugusto <maugusto@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/24 09:38:00 by maugusto          #+#    #+#             */
-/*   Updated: 2024/04/26 13:48:46 by maugusto         ###   ########.fr       */
+/*   Updated: 2024/04/29 15:56:32 by maugusto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,17 +19,17 @@ int	ft_printf_arg(const char *format, int i, va_list ap)
 	else if (format[i + 1] == 's')
 		return (ft_putstr(va_arg(ap, char *)));
 	else if (format[i + 1] == 'p')
-		return (ft_putstr("0x") + ft_putpointer(va_arg(ap, unsigned long)));
+		return (ft_putpointer(va_arg(ap, unsigned long)));
 	else if (format[i + 1] == 'd' || format[i + 1] == 'i')
 		return (ft_printnbr(va_arg(ap, int)));
 	else if (format[i + 1] == 'u')
-		return (ft_printnbr_u(va_arg(ap, unsigned int)));
+		return (ft_uitoa(va_arg(ap, unsigned int)));
 	else if (format[i + 1] == 'x' || format[i + 1] == 'X')
 	{
 		if (format[i + 1] == 'X')
-			return (ft_put_hex(va_arg(ap, unsigned int), "0123456789ABCDEF"));
+			return (puthex(va_arg(ap, unsigned int), "0123456789ABCDEF"));
 		else
-			return (ft_put_hex(va_arg(ap, unsigned int), "0123456789abcdef"));
+			return (puthex(va_arg(ap, unsigned int), "0123456789abcdef"));
 	}
 	else if (format[i + 1] == '%')
 		return (ft_putchar(format[i + 1]));
@@ -73,10 +73,12 @@ int main()
     int b= 0xffffffff;// %x // %X
     // %%
     int i;
-    i = ft_printf("Printf replica:\n| TEST TEXT |\n| Single Char: %c |\n| String: %s |\n| Pointer Adress: %p |\n| Decimal: %d |\n| Integer %i |\n| Unsign deci: %u |\n| HexLower: %x |\n| HexUpper: %X |\n| Percentage sign: %% |\n", c, str, var, nbr, nbr, nbrr, b, b);
+    printf("Printf replica:\n");
+    i = ft_printf("| TEST TEXT |\n| Single Char: %c |\n| String: %s |\n| Pointer Adress: %p |\n| Decimal: %d |\n| Integer %i |\n| Unsign deci: %u |\n| HexLower: %x |\n| HexUpper: %X |\n| Percentage sign: %% |\n", c, str, var, nbr, nbr, nbrr, b, b);
     printf("\nReturn Value: %d", i);
     ///////////////////////////////
-    i = printf("Printf replica:\n| TEST TEXT |\n| Single Char: %c |\n| String: %s |\n| Pointer Adress: %p |\n| Decimal: %d |\n| Integer %i |\n| Unsign deci: %u |\n| HexLower: %x |\n| HexUpper: %X |\n| Percentage sign: %% |\n", c, str, var, nbr, nbr, nbrr, b, b);
+    printf("\nPrintf original:\n");
+    i = printf("| TEST TEXT |\n| Single Char: %c |\n| String: %s |\n| Pointer Adress: %p |\n| Decimal: %d |\n| Integer %i |\n| Unsign deci: %u |\n| HexLower: %x |\n| HexUpper: %X |\n| Percentage sign: %% |\n", c, str, var, nbr, nbr, nbrr, b, b);
     printf("\nReturn Value: %d", i);
     return (0);
 }
