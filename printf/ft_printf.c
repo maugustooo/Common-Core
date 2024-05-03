@@ -6,7 +6,7 @@
 /*   By: maugusto <maugusto@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/24 09:38:00 by maugusto          #+#    #+#             */
-/*   Updated: 2024/04/29 15:56:32 by maugusto         ###   ########.fr       */
+/*   Updated: 2024/05/03 10:04:30 by maugusto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ int	ft_printf_arg(const char *format, int i, va_list ap)
 			return (puthex(va_arg(ap, unsigned int), "0123456789abcdef"));
 	}
 	else if (format[i + 1] == '%')
-		return (ft_putchar(format[i + 1]));
+		return (ft_putchar('%'));
 	else
 		return (0);
 }

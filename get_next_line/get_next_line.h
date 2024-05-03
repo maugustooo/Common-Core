@@ -6,7 +6,7 @@
 /*   By: maugusto <maugusto@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/25 15:03:37 by maugusto          #+#    #+#             */
-/*   Updated: 2024/04/29 11:59:55 by maugusto         ###   ########.fr       */
+/*   Updated: 2024/05/03 11:47:09 by maugusto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,9 +25,10 @@ char	*get_next_line(int fd);
 
 
 char	*get_next_line(int fd);
-char	*ft_strdup(char *s);
+char	*ft_strndup(char *s1, int len);
 size_t	ft_strlen(char *s);
 char	*ft_substr(char *s, unsigned int start, size_t len);
 char	*ft_strjoin(char *s1, char *s2);
-void	fill_str(char *res, char *s1, char *s2);
+size_t	ft_strlentoc(char *s, char c);
+
 #endif

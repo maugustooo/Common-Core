@@ -6,7 +6,7 @@
 /*   By: maugusto <maugusto@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/25 15:04:39 by maugusto          #+#    #+#             */
-/*   Updated: 2024/04/29 15:53:59 by maugusto         ###   ########.fr       */
+/*   Updated: 2024/05/03 14:32:03 by maugusto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ char	*ft_substr(char *s, unsigned int start, size_t len)
 	if (!s)
 		return (NULL);
 	if (start > ft_strlen(s))
-		return (ft_strdup(""));
+		return (ft_strndup("", 1));
 	if (len > ft_strlen(s + start))
 		len = ft_strlen(s + start);
 	str = malloc((len + 1) * sizeof(char));
@@ -46,46 +46,60 @@ char	*ft_substr(char *s, unsigned int start, size_t len)
 	return (str);
 }
 
-char	*ft_strdup(char *s1)
+char	*ft_strndup(char *s1, int len)
 {
 	char			*dest;
-	unsigned int	i;
+	int	i;
 
-	dest = (char *) malloc(ft_strlen(s1) + 1);
+	dest = (char *) malloc((len + 1) * sizeof(char));
 	if (!dest)
 		return (NULL);
 	i = 0;
-	while (s1[i])
+	while (i < len)
 	{
 		dest[i] = s1[i];
 		i++;
 	}
-	dest[i] = 0;
+	dest[i] = '\0';
 	return (dest);
 }
 
 char	*ft_strjoin(char *s1, char *s2)
 {
-	char			*res;
+	char	*newstring;
+	int		i;
+	int		j;
+	int		size;
 
-	res = (char *) malloc((ft_strlen(s1) + ft_strlen(s2) + 1) * sizeof(char));
-	if (!res)
-		return (NULL);
-	fill_str(res, s1, s2);
-	return (res);
+	if (!s1)
+	{
+		s1 = malloc(sizeof(char));
+		s1[0] = '\0';
+	}
+	size = ft_strlen(s1) + ft_strlen(s2);
+	newstring = malloc(sizeof(char *) * (size + 1));
+	if (!newstring)
+		return (0);
+	i = -1;
+	j = 0;
+	while ((i < size) && (s1[++i]))
+		newstring[i] = s1[i];
+	while ((i < size) && (s2[j]))
+		newstring[i++] = s2[j++];
+	newstring[i] = '\0';
+	if (s1)
+		free (s1);
+	return (newstring);
 }
 
-void	fill_str(char *res, char *s1, char *s2)
+size_t	ft_strlentoc(char *s, char c)
 {
-	unsigned int	i;
-	unsigned int	j;
+	int	i;
 
 	i = 0;
-	j = 0;
-	while (s1[j])
-		res[i++] = s1[j++];
-	j = 0;
-	while (s2[j])
-		res[i++] = s2[j++];
-	res[i] = '\0';
+	if (!s)
+		return (0);
+	while (s[i] && s[i] != c)
+		i++;
+	return (i);
 }

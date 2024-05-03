@@ -6,7 +6,7 @@
 /*   By: maugusto <maugusto@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/16 12:08:26 by maugusto          #+#    #+#             */
-/*   Updated: 2024/04/29 15:35:51 by maugusto         ###   ########.fr       */
+/*   Updated: 2024/04/30 11:56:12 by maugusto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,19 +34,6 @@ int	ft_printnbr(int nbr)
 	char	*str;
 	int		len;
 
-	str = ft_itoa(nbr);
-	len = ft_putstr(str);
-	free(str);
-	return (len);
-}
-
-int	ft_printnbr_u(unsigned int nbr)
-{
-	char	*str;
-	int		len;
-	int result;
-	
-	result = 0;
 	str = ft_itoa(nbr);
 	len = ft_putstr(str);
 	free(str);

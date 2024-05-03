@@ -6,7 +6,7 @@
 /*   By: maugusto <maugusto@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/09 12:16:40 by gude-jes          #+#    #+#             */
-/*   Updated: 2024/04/29 15:41:26 by maugusto         ###   ########.fr       */
+/*   Updated: 2024/04/30 11:22:28 by maugusto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ int	ft_uitoa(unsigned int n)
 	result = 0;
 	len = ft_size(n);
 	if (n == 0)
-		return(ft_putchar('0'));
+		return (ft_putchar('0'));
 	str = malloc(sizeof(char) * (len + 1));
 	if (!str)
 		return (0);

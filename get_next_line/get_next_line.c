@@ -6,17 +6,25 @@
 /*   By: maugusto <maugusto@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/25 14:05:35 by maugusto          #+#    #+#             */
-/*   Updated: 2024/04/29 12:14:51 by maugusto         ###   ########.fr       */
+/*   Updated: 2024/05/03 14:36:02 by maugusto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
+char *ft_free(char *stash, char *buffer)
+{
+	free(stash);
+	free(buffer);
+	return(NULL);
+}
 char	*ft_strchr(char *s, int c)
 {
 	unsigned int	i;
 	char			cc;
 
+	if (!s)
+		return (NULL);
 	cc = (char) c;
 	i = 0;
 	while (s[i])
@@ -30,83 +38,85 @@ char	*ft_strchr(char *s, int c)
 	return (NULL);
 }
 
-char	*read_file(int fd, char *result, char *buffer)
+char	*read_file(int fd, char *stash)
 {
 	int		bytes_read;
-	char	*temp;
+	char	*buffer;
 	
 	bytes_read = 1;
+	buffer = malloc((BUFFER_SIZE + 1) * sizeof(char));
+	if(!buffer)
+		return(NULL);
+	*buffer = 0;
 	while (bytes_read != 0)	
 	{
 		bytes_read = read(fd, buffer, BUFFER_SIZE);
-		if (bytes_read == -1)
-		{
-			free(result);
-			return(NULL);			
-		}
-		else if(bytes_read == 0)
-			break;
+		if (bytes_read < 0)
+			return(ft_free(stash, buffer));			
 		buffer[bytes_read] = '\0';
-		if(!result)
-			result = ft_strdup("");
-		temp = result;
-		result = ft_strjoin(temp, buffer);
-		free(temp);
-		temp = NULL;
+		stash = ft_strjoin(stash, buffer);
 		if (ft_strchr(buffer, '\n'))
 			break ;
 	}
-	return (result);
+	if(*stash == '\0' || bytes_read == -1)
+		return(ft_free(stash, buffer));
+	free(buffer);
+	return (stash);
 }
 
-char	*ft_line(char *line)
+char	*ft_outline(char *stash)
 {
-	char	*stash;
-	int	i;
+	char	*new_stash;
+	int line_len;
+	int stash_len;
 
-	i = 0;
-	while (line[i] != '\n' && line[i] != '\0')
-		i++;
-	if (line[i] == 0 || line[1] == 0)
-		return (NULL);
-	stash = ft_substr(line, i + 1, ft_strlen(line) - i);
-	if (*stash == 0)
-	{
-		free(stash);
-		stash = NULL;
-	}
-	line[i + 1] = 0;
-	return (stash);
+	stash_len = ft_strlen(stash);
+	line_len = ft_strlentoc(stash,'\n');
+	new_stash = ft_strndup(stash + line_len + 1, stash_len - line_len);
+	free(stash);
+	if(!new_stash)
+		return(NULL);
+	return (new_stash);
 }
 
 char	*get_next_line(int fd)
 {
 	static char	*stash;
 	char		*line;
-	char		*buffer;
 	
-	buffer = malloc ((BUFFER_SIZE + 1) * sizeof(char));
-	if (fd < 0 || BUFFER_SIZE <= 0 || read(fd, 0, 0) < 0 || !buffer)
-	{
-		free(stash);
-		free(buffer);
-		buffer= NULL;
+	if (fd < 0 || BUFFER_SIZE <= 0)
+		return (NULL);
+	if (!stash)
 		stash = NULL;
+	stash = read_file(fd, stash);
+	if(!stash)
 		return (NULL);
-	}
-	if (!buffer)
-		return (NULL);
-	line = read_file(fd, stash, buffer);
-	free(buffer);
-	buffer = NULL;
+	line = ft_strndup(stash, ft_strlentoc(stash, '\n') + 1);
 	if(!line)
-		return (NULL);
-	stash = ft_line(line);
+		return(NULL);
+	stash = ft_outline(stash);
+	if(!stash)
+		free(stash);
 	return (line);
 }
 
-/*
 #include <fcntl.h>
+
+int main()
+{
+	int fd = open("teste", O_RDONLY);
+	int	i = 1;
+	char *s = get_next_line(fd);
+
+	while (s)
+	{
+		printf("Linha %d: %s", i++, s);
+		s = get_next_line(fd);
+	}
+}
+
+/*
+
 
 int main() {
     int fd = open("test", O_RDONLY); // Abrindo o arquivo "teste" para leitura
