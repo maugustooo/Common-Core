@@ -6,7 +6,7 @@
 /*   By: maugusto <maugusto@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/25 15:04:39 by maugusto          #+#    #+#             */
-/*   Updated: 2024/05/03 14:32:03 by maugusto         ###   ########.fr       */
+/*   Updated: 2024/05/07 09:43:56 by maugusto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,34 +22,30 @@ size_t	ft_strlen(char *s)
 	return (i);
 }
 
-char	*ft_substr(char *s, unsigned int start, size_t len)
+char	*ft_strchr(char *s, int c)
 {
-	size_t	i;
-	char	*str;
+	unsigned int	i;
+	char			cc;
 
 	if (!s)
 		return (NULL);
-	if (start > ft_strlen(s))
-		return (ft_strndup("", 1));
-	if (len > ft_strlen(s + start))
-		len = ft_strlen(s + start);
-	str = malloc((len + 1) * sizeof(char));
-	if (!str)
-		return (NULL);
+	cc = (char) c;
 	i = 0;
-	while (i < len)
+	while (s[i])
 	{
-		str[i] = s[start + i];
+		if (s[i] == cc)
+			return ((char *) &s[i]);
 		i++;
 	}
-	str[i] = 0;
-	return (str);
+	if (s[i] == cc)
+		return ((char *) &s[i]);
+	return (NULL);
 }
 
 char	*ft_strndup(char *s1, int len)
 {
-	char			*dest;
-	int	i;
+	char	*dest;
+	int		i;
 
 	dest = (char *) malloc((len + 1) * sizeof(char));
 	if (!dest)
