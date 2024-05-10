@@ -1,0 +1,117 @@
+Connect SSH:
+    hostname -I == show VM IP
+Password policy:
+    sudo nano /etc/pam.d/common-password
+    sudo nano /etc/login.defs
+    libpam-pwquality - script que controla a pw policy.
+    minlen=10           == Minimo caracteres
+    ucredit=-1          == Pelo menos 1 uppercase
+    lcredit=-1          == Pelo menos 1 lowerrcase
+    dcredit=-1          == Pelo menos 1 numero
+    maxrepeat=3         == So pode repetir 3 caracteres iguais
+    reject_username     == nao pode conter username
+    difok=7             == nao pode conter mais do que 7 caracteres da pass anterior
+    enforce_for_root    == forcar para root
+CMDS:
+	“lsblk” - see partition
+	“su -” - loggin as root user
+
+	“apt-get update -y”
+	“apt-get upgrade -y”
+
+	“apt install sudo”
+
+   	“usermod -aG sudo vafernan” - add user to sudo group
+   	getent group - ver os usuarios de um grupo
+    	sudo groupadd - criar novo grupo
+    	sudo usermod - add membro a grupo
+    	chage -l - ver infos pass de um utilizador
+Change hostname - sudo nano /etc/hosts
+                    sudo nano /etc/hostname
+Sudo status - dpkg -l | grep sudo -
+UFW:
+    sudo ufw allow
+    sudo ufw deny
+    sudo ufw delete
+    sudo ufw status numbered
+    
+    
+    
+    
+    
+    
+    
+    
+    
+“lsblk” - see partition
+
+“su -” - loggin as root user
+
+“apt-get update -y”
+“apt-get upgrade -y”
+
+“apt install sudo”
+
+“usermod -aG sudo vafernan” - add user to sudo group
+
+“getent group sudo” - check users in group sudo
+
+“sudo visudo”
+
+“apt-get install git -y” - install git
+
+“git --version” - check git version
+
+“sudo apt install openssh-server” - install SSH Server (Secure Shell)
+
+“sudo systemctl status ssh” - check SSH Server Status
+
+“sudo apt install vim” - install vim
+
+“sudo vim /etc/ssh/sshd_config” / Find and change ”#Port 22” to “Port 4242”
+
+“sudo grep Port /etc/ssh/sshd_config” - check if port congif was altered
+
+“sudo service ssh restart” - to make sure changes are in effect
+
+“apt-get install ufw” - install (Uncomplicated Firewall)
+
+“sudo ufw enable” - enable ufw on startup
+
+“sudo ufw status numbered” - check ufw status
+
+“sudo ufw allow ssh” - configure the rules
+
+“sudo ufw allow 4242” - configure the port rules
+
+On the VM settings / network / adapter1 / port forwarding / rule1 host an gest port to 4242
+
+“sudo apt-get install libpam-pwquality” - insall the password checking library
+
+“sudo vim /etc/pam.d/common-password” find “password requisite pam_deny.so” and change to “password requisite pam_pwquality.so retry=3 minlen=10 ucredit=-1 lcredit=-1 dcredit=-1 maxrepeat=3 reject_username difok=7 enforce_for_root” - this is to change password settings
+
+“sudo vim /etc/login.defs” find “PASS_MAX_DAYS 9999 PASS_MIN_DAYS 0 PASS_WARN_AGE 7” change to “PASS_MAX_DAYS 30 and PASS_MIN_DAYS 2 keep PASS_WARN_AGE 7”
+
+“sudo reboot” - reboots the machine
+
+“sudo groupadd user42” - creates a group named user42
+
+“sudo groupadd evaluating”
+
+“getent group” - check the groups
+
+“cut -d: -f1 /etc/passwd” -
+
+“hostname -I” - ver o ip da maquina virtual
+
+“ssh vafernan@”hostnameIP” -p 4242”
+
+“exit” - to loggout of ssh connection
+
+Each action using sudo has to be archived, both inputs and outputs. The log file has to be saved in the /var/log/sudo/ folder
+
+“”sudo crontab -u root -e” - open the crontab
+
+“nano monitoring.sh” - open monitoring
+
+“cd /usr/local/bin”
