@@ -1,38 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putnbr_fd.c                                     :+:      :+:    :+:   */
+/*   get_next_line.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: maugusto <maugusto@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/16 12:08:26 by maugusto          #+#    #+#             */
-/*   Updated: 2024/05/17 12:08:00 by maugusto         ###   ########.fr       */
+/*   Created: 2024/04/25 15:03:37 by maugusto          #+#    #+#             */
+/*   Updated: 2024/05/17 11:54:30 by maugusto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#ifndef GET_NEXT_LINE_H
+# define GET_NEXT_LINE_H
+# ifndef BUFFER_SIZE
+#  define BUFFER_SIZE 10
+# endif
+# include <stdlib.h>
+# include <sys/types.h>
+# include <sys/uio.h>
+# include <unistd.h>
+# include <stdio.h>
+# include "../libft.h"
 
-void	ft_putnbr_fd(int n, int fd)
-{
-	if (n == -2147483648)
-	{
-		write(fd, "-2147483648", 11);
-	}
-	else
-	{
-		if (n < 0)
-		{
-			ft_putchar_fd('-', fd);
-			n *= -1;
-		}
-		if (n < 10)
-		{
-			ft_putchar_fd(n + 48, fd);
-		}
-		else
-		{
-			ft_putnbr_fd((n / 10), fd);
-			ft_putnbr_fd((n % 10), fd);
-		}
-	}
-}
+char	*get_next_line(int fd);
+char	*ft_strndup(char *s1, int len);
+size_t	ft_strlentoc(char *s, char c);
+char	*ft_strjoing(char *s1, char *s2);
+#endif

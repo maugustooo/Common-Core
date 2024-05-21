@@ -1,0 +1,138 @@
+Connect SSH:
+    hostname -I == show VM IP
+Password policy:
+    sudo nano /etc/pam.d/common-password
+    sudo nano /etc/login.defs
+    libpam-pwquality - script que controla a pw policy.
+    minlen=10           == Minimo caracteres
+    ucredit=-1          == Pelo menos 1 uppercase
+    lcredit=-1          == Pelo menos 1 lowerrcase
+    dcredit=-1          == Pelo menos 1 numero
+    maxrepeat=3         == So pode repetir 3 caracteres iguais
+    reject_username     == nao pode conter username
+    difok=7             == nao pode conter mais do que 7 caracteres da pass anterior
+    enforce_for_root    == forcar para root
+UFW:
+    “apt-get install ufw” 
+    sudo ufw allow
+    sudo ufw deny
+    sudo ufw delete
+    sudo ufw status numbered
+
+SSH Server:
+“sudo apt install openssh-server” 
+“sudo systemctl status ssh” 
+“sudo vim /etc/ssh/sshd_config” / Find and change ”#Port 22” to “Port 4242”
+“sudo grep Port /etc/ssh/sshd_config” 
+“sudo service ssh restart” 
+""
+user:
+"sudo adduser new_user"
+
+"sudo usermod -aG group your_username"
+
+group commands:
+“sudo groupadd user42” 
+
+“sudo groupadd evaluating”
+
+“getent group” 
+
+"sudo groupdel nome_do_grupo"
+
+“usermod -aG sudo maugusto”
+
+
+Hostname and Partitions:
+Check Hostname “”hostname”
+Edit the hostname of the machine: 
+“sudo nano /etc/hostname”, 
+Update the host:
+“sudo nano /etc/hosts” 
+Apply changes: 
+“sudo hostnamectl 
+set-hostname: 
+“newhostname”” 
+Validate with: 
+“hostname”
+Check partition:
+“lsblk”
+
+
+SUDO:
+Verify that SUDO is installed: 
+“sudo” / “which sudo” 
+New user to group: 
+“usermod -aG sudo USERNAME” Sudo + superuser do (root user +- admin) 
+Check sudo log: 
+“cd /var/log/sudo/” , “ls” , ”nano sudo.log”
+
+"sudo dpkg -l sudo"
+
+UFW / Firewall:
+
+Check if UFW is installed: 
+“sudo ufw status” 
+New rule: 
+“sudo ufw allow 8080”
+To delete a rule show rules with: 
+“sudo ufw status numbered” and then ”sudo ufw delete [nbr_of_rule]”
+
+
+SSH:
+
+Verify is SSH is installed “sudo service ssh status” What is SSH: 
+It is a network protocol that gives users a secure way to access a computer over an unsecured network, as it provides strong password authentication. Its very useful to manage applications remotely, for file transfer etc. It runs a server-client model, as it must be installed in the machine first.
+Verify the port used by ssh: 
+“sudo nano /etc/ssh/sshd_config” or “sudo service ssh status”Hostname and Partitions"
+
+Check Hostname: 
+”hostname”
+
+Update the host: 
+“sudo nano /etc/hosts” 
+
+Apply changes: 
+“sudo hostnamectl set-hostname “newhostname”” 
+
+Validate with: 
+“hostname”
+
+Check partition: 
+“lsblk”
+
+
+CMDS:
+
+“su -” - loggin as root user
+
+“sudo reboot” 
+
+install the password checking library:
+“sudo apt-get install libpam-pwquality” 
+
+this is to change password settings:
+“sudo vim /etc/pam.d/common-password” find “password requisite pam_deny.so” and change to “password requisite pam_pwquality.so 
+retry=3 minlen=10 ucredit=-1 lcredit=-1 dcredit=-1 maxrepeat=3 reject_username difok=7 enforce_for_root” 
+
+“sudo vim /etc/login.defs” find “PASS_MAX_DAYS 9999 PASS_MIN_DAYS 0 PASS_WARN_AGE 7” change to “PASS_MAX_DAYS 30 and PASS_MIN_DAYS 2 keep PASS_WARN_AGE 7”
+
+check all local users:
+“cut -d: -f1 /etc/passwd” -
+
+ver o ip da maquina virtual:
+“hostname -I” 
+
+“ssh maugusto@”hostnameIP” -p 4242”
+
+script:
+sudo /usr/local/bin/monitoring.sh
+
+crontab:
+sudo crontab -e
+
+server config:
+"sudo vim /etc/ssh/sshd_config"
+
+sudo config:
+"sudo visudo"
