@@ -6,7 +6,7 @@
 /*   By: maugusto <maugusto@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/01 13:37:27 by dot               #+#    #+#             */
-/*   Updated: 2024/05/17 11:33:23 by maugusto         ###   ########.fr       */
+/*   Updated: 2024/05/22 09:48:07 by maugusto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,16 +78,4 @@ t_list	*ft_lstnew(void *content);
 t_list	*ft_lstlast(t_list *lst);
 t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *));
 
-
-
-//printf
-int		ft_printf(const char *str, ...);
-int		ft_putchar(char c);
-int		puthex(unsigned long nbr, char *base);
-int		ft_putstr(char *str);
-int		ft_printnbr(int nbr);
-int		ft_putpointer(unsigned long nbr);
-size_t	ft_strlen(char const *str);
-int		ft_uitoa(unsigned int n);
-char	*ft_itoa(int n);
 #endif

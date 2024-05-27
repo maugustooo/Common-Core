@@ -6,7 +6,7 @@
 /*   By: maugusto <maugusto@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/24 10:35:55 by maugusto          #+#    #+#             */
-/*   Updated: 2024/05/17 14:17:42 by maugusto         ###   ########.fr       */
+/*   Updated: 2024/05/24 15:10:13 by maugusto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,5 @@ int		ft_putstr(char *str);
 int		ft_printnbr(int nbr);
 int		ft_putpointer(unsigned long nbr);
 int		ft_uitoa(unsigned int n);
-char	*ft_itoa(int n);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: maugusto <maugusto@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/24 09:38:00 by maugusto          #+#    #+#             */
-/*   Updated: 2024/05/17 11:44:22 by maugusto         ###   ########.fr       */
+/*   Updated: 2024/05/22 09:50:22 by maugusto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,25 +60,3 @@ int	ft_printf(const char *format, ...)
 	va_end (ap);
 	return (result);
 }
-
-// #include <stdio.h>
-// #include "ft_printf.h"
-// int main()
-// {
-//     char c = 'k'; // %c
-//     char *str = "String test"; // %s
-//     char *var; var = &c;// %p
-//     int nbr = -5;// %d // %i
-//     unsigned int nbrr = 20;// %u
-//     int b= 0xffffffff;// %x // %X
-//     // %%
-//     int i;
-//     printf("Printf replica:\n");
-//     i = ft_printf("| TEST TEXT |\n| Single Char: %c |\n| String: %s |\n| Pointer Adress: %p |\n| Decimal: %d |\n| Integer %i |\n| Unsign deci: %u |\n| HexLower: %x |\n| HexUpper: %X |\n| Percentage sign: %% |\n", c, str, var, nbr, nbr, nbrr, b, b);
-//     printf("\nReturn Value: %d", i);
-//     ///////////////////////////////
-//     printf("\nPrintf original:\n");
-//     i = printf("| TEST TEXT |\n| Single Char: %c |\n| String: %s |\n| Pointer Adress: %p |\n| Decimal: %d |\n| Integer %i |\n| Unsign deci: %u |\n| HexLower: %x |\n| HexUpper: %X |\n| Percentage sign: %% |\n", c, str, var, nbr, nbr, nbrr, b, b);
-//     printf("\nReturn Value: %d", i);
-//     return (0);
-// }
