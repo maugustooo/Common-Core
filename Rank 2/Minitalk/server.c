@@ -6,11 +6,13 @@
 /*   By: maugusto <maugusto@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/17 12:47:53 by maugusto          #+#    #+#             */
-/*   Updated: 2024/05/27 12:09:55 by maugusto         ###   ########.fr       */
+/*   Updated: 2024/05/31 10:11:12 by maugusto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft/libft.h"
+
+static char	*str = NULL;
 
 void	art(void)
 {
@@ -25,39 +27,39 @@ void	art(void)
 	ft_printf("\t\t\t    |____/|_____|_| \\_\\ \\_/  |_____|_| \\_\\       \n");
 }
 
-char	*ft_cjoin(char *str, char c)
+char *ft_cjoin(char *str, char c)
 {
-	char	*newstring;
-	int		i;
-	int		size;
+    char *newstring;
+    int i;
+    int size;
 
-	if (!str)
-	{
-		str = malloc(sizeof(char));
-		str[0] = '\0';
-	}
-	size = ft_strlen(str);
-	newstring = (char *)malloc(sizeof(char) * (size + 2));
-	if (!newstring)
-		return (0);
-	i = 0;
-	while (str[i])
-	{
-		newstring[i] = str[i];
-		i++;
-	}
-	newstring[i++] = c;
-	newstring[i] = '\0';
-	if (str)
-		free(str);
-	return (newstring);
+    if (!str)
+    {
+        str = malloc(sizeof(char)); 
+        if (!str)
+            return (NULL);
+        str[0] = '\0';
+    }
+    size = ft_strlen(str);
+    newstring = (char *)malloc(sizeof(char) * (size + 2));
+    if (!newstring)
+        return (NULL);
+    i = 0;
+    while (str[i])
+    {
+        newstring[i] = str[i];
+        i++;
+    }
+    newstring[i++] = c;
+    newstring[i] = '\0';
+    free(str);
+    return (newstring);
 }
 
 void	read_bits_and_print(int signal)
 {
 	static int	received_char = 0;
 	static int	bit = 0;
-	static char	*str = NULL;
 
 	if (signal == SIGUSR1)
 		received_char = received_char | (1 << bit);
@@ -75,8 +77,7 @@ void	read_bits_and_print(int signal)
 		bit = 0;
 		received_char = 0;
 	}
-}
-
+} 
 int	main(void)
 {
 	int	pid;
@@ -89,6 +90,6 @@ int	main(void)
 	{
 		signal(SIGUSR1, read_bits_and_print);
 		signal(SIGUSR2, read_bits_and_print);
-		pause();
+		
 	}
 }
