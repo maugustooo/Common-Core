@@ -6,7 +6,7 @@
 /*   By: maugusto <maugusto@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/22 16:56:28 by maugusto          #+#    #+#             */
-/*   Updated: 2024/05/29 17:33:29 by maugusto         ###   ########.fr       */
+/*   Updated: 2024/05/31 15:46:01 by maugusto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,11 @@ int main(int argc, char **argv)
 	game.moves = 0;
 	ft_memset(&game, 0, sizeof(t_idk));
 	map_reading(&game, argv);
+	if(!check_errors(&game))
+	{
+		ft_printf("Error\nThe map is wrong either Wall not corect or bad formated");
+		exit_game(&game);
+	}
 	game.mlx = mlx_init();
     game.window = mlx_new_window(game.mlx, (game.widthmap * 124), (game.heightmap * 124), "So long");
 	put_imgs_to_variables(&game);

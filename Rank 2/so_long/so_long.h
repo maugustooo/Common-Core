@@ -6,7 +6,7 @@
 /*   By: maugusto <maugusto@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/21 20:15:54 by prossi            #+#    #+#             */
-/*   Updated: 2024/05/29 17:30:34 by maugusto         ###   ########.fr       */
+/*   Updated: 2024/05/31 15:05:37 by maugusto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,10 @@ typedef struct t_variables
 	int		j;
 	int		collectables;
 	int		moves;
+	int 	player_count;
+	int		exit_count;
+	int		collectables_count;
+	
 	char	**map;
 	
 	void	*floor;
@@ -53,4 +57,6 @@ void put_imgs_to_variables(t_idk *game);
 void put_img_in_game(t_idk *game);
 int controls(int key_code, t_idk *game);
 int exit_game(t_idk *game);
+int check_errors(t_idk *game);
+void check_rectangular(t_idk *game);
 #endif
