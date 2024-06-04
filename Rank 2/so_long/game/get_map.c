@@ -51,8 +51,8 @@ static int	add_line(t_idk *game, char *line)
 		i++;
 	}
 	temporary[i] = line;
-	if (game->map != NULL)
-		game->map = NULL;
+	if (game->map)
+		free(game->map);
 	game->map = temporary;
 	return (1);
 }
