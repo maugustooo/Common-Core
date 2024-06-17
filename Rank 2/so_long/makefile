@@ -6,7 +6,7 @@
 #    By: maugusto <maugusto@student.42porto.com>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/17 11:56:43 by maugusto          #+#    #+#              #
-#    Updated: 2024/05/27 15:15:01 by maugusto         ###   ########.fr        #
+#    Updated: 2024/06/07 10:16:54 by maugusto         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,6 +17,7 @@ CC := cc
 CFLAGS := -Wall -Wextra -Werror -g -Iheaders/
 
 SOURCE := game/*.c
+BONUS := game_bonus/*.c
 LIBFT := libft/*.c
 PRINTF := libft/printf/*.c
 GETNEXTLINE := libft/get_next_line/*.c
@@ -27,10 +28,13 @@ all:
 	make -C $(MINILIBX)
 	$(CC) $(CFLAGS) $(SOURCE) $(LIBFT) $(PRINTF) $(GETNEXTLINE) $(LIBRARY) -o $(NAME)
 
+bonus:
+	make -C $(MINILIBX)
+	$(CC) $(CFLAGS) $(BONUS) $(LIBFT) $(PRINTF) $(GETNEXTLINE) $(LIBRARY) -o $(NAME)
 clean:
-
+	$(MAKE) clean -C ./libft 
+	$(RM) $(OBJS)
 fclean: clean
-	make clean -C $(MINILIBX)
 	rm -rf $(NAME)
 
 re: fclean all

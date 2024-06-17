@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   errors.c                                           :+:      :+:    :+:   */
+/*   errors_bonus.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: maugusto <maugusto@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/04 09:51:35 by maugusto          #+#    #+#             */
-/*   Updated: 2024/06/04 13:57:03 by maugusto         ###   ########.fr       */
+/*   Updated: 2024/06/11 17:42:44 by maugusto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../so_long.h"
+#include "../so_long_bonus.h"
 
 static void	count_checker(t_idk *game, int height, int width)
 {
@@ -19,6 +19,7 @@ static void	count_checker(t_idk *game, int height, int width)
 		game->map[height][width] != 'C' &&
 		game->map[height][width] != 'E' &&
 		game->map[height][width] != 'P' &&
+		game->map[height][width] != 'N' &&
 		game->map[height][width] != '\n')
 	{
 		ft_printf("\nError Here!%c\n", game->map[height][width]);
@@ -79,6 +80,7 @@ int	check_errors(t_idk *game)
 	j = 0;
 	while (j < i)
 	{
+		
 		if (!(game->map[j][0] == '1' && game->map[j][game->widthmap - 1] ==
 				'1'))
 			return (0);

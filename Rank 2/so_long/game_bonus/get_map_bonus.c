@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_map.c                                          :+:      :+:    :+:   */
+/*   get_map_bonus.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: maugusto <maugusto@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/04 13:52:37 by maugusto          #+#    #+#             */
-/*   Updated: 2024/06/04 13:57:54 by maugusto         ###   ########.fr       */
+/*   Updated: 2024/06/07 12:32:55 by maugusto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../so_long.h"
+#include "../so_long_bonus.h"
 
 static int	width_of_map(char *string, int width)
 {
@@ -90,14 +90,14 @@ static void	find_player(t_idk *game)
 	}
 }
 
-int	map_reading(t_idk *game, char **argv)
+int	map_reading(t_idk *game)
 {
 	char		*readmap;
 	static int	width;
 
 	width = 0;
 	readmap = NULL;
-	game->fd = open(argv[1], O_RDONLY);
+	game->fd = open("map/map.ber", O_RDONLY);
 	if (game->fd < 0)
 	{
 		ft_printf("erro");
