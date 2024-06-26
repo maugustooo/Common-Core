@@ -6,7 +6,7 @@
 #    By: maugusto <maugusto@student.42porto.com>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/17 11:56:43 by maugusto          #+#    #+#              #
-#    Updated: 2024/06/07 10:16:54 by maugusto         ###   ########.fr        #
+#    Updated: 2024/06/18 18:30:36 by maugusto         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,20 +24,20 @@ GETNEXTLINE := libft/get_next_line/*.c
 LIBRARY := -Lminilibx-linux -lmlx -lX11 -lXext -lm
 MINILIBX := minilibx-linux/
 
-all:
+all: $(NAME)
+	
+$(NAME): 
 	make -C $(MINILIBX)
 	$(CC) $(CFLAGS) $(SOURCE) $(LIBFT) $(PRINTF) $(GETNEXTLINE) $(LIBRARY) -o $(NAME)
-
-bonus:
+bonus: 
 	make -C $(MINILIBX)
 	$(CC) $(CFLAGS) $(BONUS) $(LIBFT) $(PRINTF) $(GETNEXTLINE) $(LIBRARY) -o $(NAME)
 clean:
-	$(MAKE) clean -C ./libft 
 	$(RM) $(OBJS)
 fclean: clean
 	rm -rf $(NAME)
 
-re: fclean all
+re: fclean $(NAME)	
 
 
 # SOURCES = server.c client.c

@@ -12,124 +12,21 @@
 
 #include "../so_long_bonus.h"
 
-void	destroy_images(t_idk *game)
-{
-	if (game && game->mlx && game->floor)
-		mlx_destroy_image(game->mlx, game->floor);
-	if (game->wall)
-		mlx_destroy_image(game->mlx, game->wall);
-	if (game->wallg)
-		mlx_destroy_image(game->mlx, game->wallg);
-	if (game->m1)
-		mlx_destroy_image(game->mlx, game->m1);
-	if (game->m2)
-		mlx_destroy_image(game->mlx, game->m2);
-	if (game->m3)
-		mlx_destroy_image(game->mlx, game->m3);
-	if (game->m4)
-		mlx_destroy_image(game->mlx, game->m4);
-	if (game->m5)
-		mlx_destroy_image(game->mlx, game->m5);
-	if (game->m6)
-		mlx_destroy_image(game->mlx, game->m6);
-	if (game->player1)
-		mlx_destroy_image(game->mlx, game->player1);
-	if (game->player2)
-		mlx_destroy_image(game->mlx, game->player2);
-	if (game->player3)
-		mlx_destroy_image(game->mlx, game->player3);
-}
-
-void	destroy_imagesv2(t_idk *game)
-{
-	int line;
-	
-	line = 0;
-	if (game->colectable)
-		mlx_destroy_image(game->mlx, game->colectable);
-	if (game->colectable2)
-		mlx_destroy_image(game->mlx, game->colectable2);
-	if (game->colectable3)
-		mlx_destroy_image(game->mlx, game->colectable3);
-	if (game->exit)
-		mlx_destroy_image(game->mlx, game->exit);
-	if (game->black)
-		mlx_destroy_image(game->mlx, game->black);
-	if (game->enc)
-		mlx_destroy_image(game->mlx, game->enc);
-	if (game->enb)
-		mlx_destroy_image(game->mlx, game->enb);
-	if (game->enf)
-		mlx_destroy_image(game->mlx, game->enf);
-	if (game->enddead)
-		mlx_destroy_image(game->mlx, game->enddead);
-	if (game->endwin)
-		mlx_destroy_image(game->mlx, game->endwin);
-	while (line < FRAMES) 
-	{
-    	if (game->gif[line] != NULL) 
-		{
-        	mlx_destroy_image(game->mlx, game->gif[line]);
-        	game->gif[line] = NULL; // Importante para evitar uso após liberação
-    	}
-    line++;
-	}
-}
-
-void limpar_recursos(t_idk *game)
-{
-    int line;
-	
-	line = 0;
-	if (game && game->mlx)
-	{
-        destroy_images(game);
-		destroy_imagesv2(game);
-		while (line < FRAMES)
-		{
-			mlx_destroy_image(game->mlx, game->gif);
-		}
-	}
-    if (game && game->mlx)
-        mlx_destroy_window(game->mlx, game->window);
-    if (game && game->mlx)
-        mlx_destroy_display(game->mlx);
-    free(game->mlx);
-    while (line < game->heightmap)
-        free(game->map[line++]);
-    free(game->map);
-}
-
-int exit_game(t_idk *game)
-{
-	game->gifflag = 1;
-	if(game->enemy != 1)
-	{	
-		if (game->enemy == 2)
-			mlx_put_image_to_window(game->mlx, game->window, game->enddead,
-			(game->widthmap / 2) - 6, (game->heightmap / 2) - 3);
-		if (game->enemy == 0)
-			mlx_put_image_to_window(game->mlx, game->window, game->endwin,
-			(game->widthmap / 2) - 6, (game->heightmap / 2) - 3);
-		signal(SIGALRM, exit);
-		alarm(3);
-		mlx_loop(game->mlx);
-	}
-	limpar_recursos(game);
-    if(game->enemy == 1)
-		exit(0);
-	return(0);
-}
-
-int	main()
+int	main(int argc, char **argv)
 {
 	t_idk	game;
 	
-	ft_memset(&game, 0, sizeof(t_idk));
-	map_reading(&game);
-	if (!check_errors(&game))
+	if (argc != 2)
 	{
-		ft_printf("Error\nThe map is bad formated");
+		ft_printf("Just put the map\nExample:\n./so_long map.ber");
+		return (0);
+	}
+	ft_memset(&game, 0, sizeof(t_idk));
+	if (ft_strncmp(argv[1] + ft_strlen(argv[1]) -4, ".ber", 4)
+	|| !map_reading(&game, argv[1]) || !check_errors(&game))
+	{
+		game.enemy = 1;
+		ft_printf("Error\nThe map is bad formated\n");
 		exit_game(&game);
 	}
 	game.mlx = mlx_init();

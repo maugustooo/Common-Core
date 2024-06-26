@@ -6,7 +6,7 @@
 /*   By: maugusto <maugusto@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/04 13:47:58 by maugusto          #+#    #+#             */
-/*   Updated: 2024/06/13 11:49:01 by maugusto         ###   ########.fr       */
+/*   Updated: 2024/06/25 15:39:35 by maugusto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,18 +19,21 @@ void put_movement(t_idk *game)
 	int height;
 	
 	height = 0;
-	while (height < game->heightmap)
+	if(game->finish == 0)
 	{
-		width = 0;
-		while (game->map[height][width])
+		while (height < game->heightmap)
 		{
-			if (game->map[height][width] == '0')
-				mlx_put_image_to_window(game->mlx,
-				game->window, game->floor, width * 124, height * 124);
-			put_player(game, height, width);
-			width++;
+			width = 0;
+			while (game->map[height][width])
+			{
+				if (game->map[height][width] == '0')
+					mlx_put_image_to_window(game->mlx,
+					game->window, game->floor, width * 124, height * 124);
+				put_player(game, height, width);
+				width++;
+			}
+			height++;
 		}
-		height++;
 	}
 }
 
@@ -65,7 +68,6 @@ void	put_imgs_to_variables(t_idk *game)
 
 static void put_colectables(t_idk *game, int height, int width)
 {
-	
 	if (game->map[height][width] == 'C' && game->cflag == 0)
 	{		
 		mlx_put_image_to_window(game->mlx,
@@ -122,7 +124,7 @@ void	put_img_in_game(t_idk *game)
 
 	height = 0;
 	game->collectables = 0;
-	while (height < game->heightmap)
+	while (height < game->heightmap && game->finish == 0)
 	{
 		width = 0;
 		while (game->map[height][width])

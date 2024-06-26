@@ -6,7 +6,7 @@
 /*   By: maugusto <maugusto@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/04 09:51:35 by maugusto          #+#    #+#             */
-/*   Updated: 2024/06/04 13:57:03 by maugusto         ###   ########.fr       */
+/*   Updated: 2024/06/18 19:20:26 by maugusto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,13 +50,8 @@ static void	check_count_and_rectangular(t_idk *game)
 	}
 	if (!(game->p_count == 1 && game->e_count == 1 && game->c_count >= 1))
 	{
-		ft_printf("\nError\nSomething is wrong!\n");
+		ft_printf("Error\nSomething is wrong!\n");
 		ft_printf("either player, exit or collectable issue\n");
-		exit_game(game);
-	}
-	if (game->heightmap == game->widthmap)
-	{
-		ft_printf("Bruh the map isn't rectangular");
 		exit_game(game);
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: maugusto <maugusto@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/04 11:16:39 by maugusto          #+#    #+#             */
-/*   Updated: 2024/06/17 15:07:41 by maugusto         ###   ########.fr       */
+/*   Updated: 2024/06/18 14:31:01 by maugusto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,11 +64,10 @@ int	check_path(t_idk *game)
 		height++;
 	}
 	visiting(game, game->j, game->i, visited);
-	int i = 0;
-	int j = 0;
 	height = 0;
 	if (!check_c_and_e(game, height, visited))
 	{
+		game->enemy = 1;
 		ft_printf("Error\nNot all collectables or exits are reachable!\n");
 		return (0);
 	}

@@ -1,9 +1,9 @@
 {
   "configurations": [
     {
-      "name": "so_long",
+      "name": "linux-gcc-x64",
       "includePath": [
-        "/home/maugusto/Documents/common-core/Rank 2/so_long"
+        "${workspaceFolder}/**"
       ],
       "compilerPath": "/usr/bin/gcc",
       "cStandard": "${default}",

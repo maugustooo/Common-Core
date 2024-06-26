@@ -6,7 +6,7 @@
 /*   By: maugusto <maugusto@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/21 20:15:54 by prossi            #+#    #+#             */
-/*   Updated: 2024/06/05 13:22:18 by maugusto         ###   ########.fr       */
+/*   Updated: 2024/06/18 16:41:06 by maugusto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ typedef struct t_variables
 	int		j;
 	int		collectables;
 	int		moves;
+	int		mflag;
 	int 	p_count;
 	int		e_count;
 	int		c_count;

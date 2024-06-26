@@ -6,7 +6,7 @@
 /*   By: maugusto <maugusto@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/09 12:18:12 by gude-jes          #+#    #+#             */
-/*   Updated: 2024/06/07 10:11:27 by maugusto         ###   ########.fr       */
+/*   Updated: 2024/06/25 14:22:18 by maugusto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,5 @@ size_t	ft_strlen(char const *str)
 	i = 0;
 	while (str[i])
 		i++;
-		
 	return (i);
 }

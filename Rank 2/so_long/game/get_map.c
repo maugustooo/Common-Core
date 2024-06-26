@@ -6,14 +6,17 @@
 /*   By: maugusto <maugusto@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/04 13:52:37 by maugusto          #+#    #+#             */
-/*   Updated: 2024/06/04 13:57:54 by maugusto         ###   ########.fr       */
+/*   Updated: 2024/06/26 18:14:40 by maugusto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../so_long.h"
 
-static int	width_of_map(char *string, int width)
+static int	width_of_map(char *string)
 {
+	static int	width;
+
+	width = 0;
 	while (string[width] != '\0')
 		width++;
 	if (string[width - 1] == '\n')
@@ -38,6 +41,29 @@ static void	check_width(t_idk *game)
 			new_width--;
 		if (new_width > game->widthmap)
 			game->widthmap = new_width;
+		height++;
+	}
+}
+
+static void	find_player(t_idk *game)
+{
+	int	height;
+	int	width;
+
+	height = 0;
+	while (height < game->heightmap)
+	{
+		width = 0;
+		while (game->map[height][width])
+		{
+			if (game->map[height][width] == 'P')
+			{
+				game->i = width;
+				game->j = height;
+				break ;
+			}
+			width++;
+		}
 		height++;
 	}
 }
@@ -67,53 +93,28 @@ static int	add_line(t_idk *game, char *line)
 	return (1);
 }
 
-static void	find_player(t_idk *game)
-{
-	int	height;
-	int	width;
-
-	height = 0;
-	while (height < game->heightmap)
-	{
-		width = 0;
-		while (game->map[height][width])
-		{
-			if (game->map[height][width] == 'P')
-			{
-				game->i = width;
-				game->j = height;
-				break ;
-			}
-			width++;
-		}
-		height++;
-	}
-}
-
 int	map_reading(t_idk *game, char **argv)
 {
 	char		*readmap;
-	static int	width;
 
-	width = 0;
 	readmap = NULL;
 	game->fd = open(argv[1], O_RDONLY);
 	if (game->fd < 0)
 	{
-		ft_printf("erro");
-		return (0);
+		ft_printf("Error\nfile no found");
+		exit_game(game);
 	}
 	while (1)
 	{
 		readmap = get_next_line(game->fd);
 		if (!add_line(game, readmap))
-			break ;
+            break;
 	}
 	close(game->fd);
 	find_player(game);
 	if (!game->map || !game->map[0])
 		return (0);
-	game->widthmap = width_of_map(game->map[0], width);
+	game->widthmap = width_of_map(game->map[0]);
 	check_width(game);
 	return (1);
 }

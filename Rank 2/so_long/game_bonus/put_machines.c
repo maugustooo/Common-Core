@@ -2,14 +2,10 @@
 
 static void put_walkers_and_fatguy(t_idk *game, int height, int width)
 {
-	int	i;
-
-	i = 1;
 	if (game->map[height][width] == '1' && height == game->heightmap - 2 && width < 5)
 	{
 			mlx_put_image_to_window(game->mlx,
 				game->window, game->m3, width * 124, height * 124);
-			i++;
 	}
 	if (game->map[height][width] == '1' && height == 1 && width == 9)
 	{

@@ -6,7 +6,7 @@
 /*   By: maugusto <maugusto@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/21 20:15:54 by prossi            #+#    #+#             */
-/*   Updated: 2024/06/17 11:04:15 by maugusto         ###   ########.fr       */
+/*   Updated: 2024/06/26 16:45:44 by maugusto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,9 +23,17 @@
 #include "libft/libft.h"
 
 #define FRAMES 18
-
+#define DEAD 2
+#define WIN 0
+#define RIGHT 65361
+#define LEFT 65363
 /// @brief data from game
-/// @param flag 
+/// @param flag flag to put each machine
+/// @param cflag flag to put each collectable
+/// @param enflag flag to put each enemy
+/// @param enemy flag to see if the p touch an enemy
+/// @param finish flag to check if the game is finished
+/// @param j_i is like x and y in a matriz
 typedef struct t_variables
 {
 	void *mlx;
@@ -42,7 +50,6 @@ typedef struct t_variables
 	int 	p_count;
 	int		e_count;
 	int		c_count;	
-	int		strength;
 	int		current_frame;
 	
 	int		flag;
@@ -50,9 +57,10 @@ typedef struct t_variables
 	int		enflag;
 	int		enemy;
 	int		gifflag;
+	int		finish;
 	
 	char	**map;
-	
+		
 	void	*floor;
 	void	*wall;
 	void	*wallg;
@@ -76,9 +84,11 @@ typedef struct t_variables
 	void	*enddead;
 	void	*endwin;
 	void	**gif;
+
+	time_t start_time;
 } t_idk;
 
-int		map_reading(t_idk *game);
+int		map_reading(t_idk *game, char *map_path);
 void 	put_img_in_game(t_idk *game);
 int 	controls(int key_code, t_idk *game);
 int 	exit_game(t_idk *game);
@@ -90,5 +100,4 @@ void 	load_frames(t_idk *game);
 void 	put_movement(t_idk *game);
 void	put_machines(t_idk *game, int height, int width);
 void	put_player(t_idk *game, int height, int width);
-void	*render_next_frame_wrapper(void *arg);
 #endif
