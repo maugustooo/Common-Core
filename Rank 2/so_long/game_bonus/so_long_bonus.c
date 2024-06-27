@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   so_long_bonus.c                                          :+:      :+:    :+:   */
+/*   so_long_bonus.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: maugusto <maugusto@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/22 16:56:28 by maugusto          #+#    #+#             */
-/*   Updated: 2024/06/04 14:04:13 by maugusto         ###   ########.fr       */
+/*   Created: 2024/06/27 13:42:59 by maugusto          #+#    #+#             */
+/*   Updated: 2024/06/27 13:43:33 by maugusto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,15 +15,15 @@
 int	main(int argc, char **argv)
 {
 	t_idk	game;
-	
+
 	if (argc != 2)
 	{
 		ft_printf("Just put the map\nExample:\n./so_long map.ber");
 		return (0);
 	}
 	ft_memset(&game, 0, sizeof(t_idk));
-	if (ft_strncmp(argv[1] + ft_strlen(argv[1]) -4, ".ber", 4)
-	|| !map_reading(&game, argv[1]) || !check_errors(&game))
+	if (ft_strncmp(argv[1] + ft_strlen(argv[1]) - 4, ".ber", 4)
+		|| !map_reading(&game, argv[1]) || !check_errors(&game))
 	{
 		game.enemy = 1;
 		ft_printf("Error\nThe map is bad formated\n");

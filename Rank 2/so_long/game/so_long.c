@@ -6,7 +6,7 @@
 /*   By: maugusto <maugusto@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/22 16:56:28 by maugusto          #+#    #+#             */
-/*   Updated: 2024/06/04 14:04:13 by maugusto         ###   ########.fr       */
+/*   Updated: 2024/06/27 15:27:31 by maugusto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ int	exit_game(t_idk *game)
 		free(game->map[line++]);
 	free(game->map);
 	exit(0);
-}
+}	
 
 int	main(int argc, char **argv)
 {
@@ -66,7 +66,8 @@ int	main(int argc, char **argv)
 	game.moves = 0;
 	ft_memset(&game, 0, sizeof(t_idk));
 	map_reading(&game, argv);
-	if (!check_errors(&game))
+	if (ft_strncmp(argv[1] + ft_strlen(argv[1]) - 4, ".ber", 4)
+		|| !check_errors(&game))
 	{
 		ft_printf("Error\nThe map is bad formated");
 		exit_game(&game);

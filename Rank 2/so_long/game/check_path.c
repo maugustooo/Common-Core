@@ -6,7 +6,7 @@
 /*   By: maugusto <maugusto@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/04 11:16:39 by maugusto          #+#    #+#             */
-/*   Updated: 2024/06/04 14:37:17 by maugusto         ###   ########.fr       */
+/*   Updated: 2024/06/27 14:49:45 by maugusto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,15 @@
 
 static void	visiting(t_idk *game, int height, int width, int **visited)
 {
-	if (visited[height][width] || game->map[height][width] == '1')
+	if (visited[height][width] || game->map[height][width] == '1'
+		|| game->map[height][width] == 'E')
+	{
+		if (game->map[height][width] == 'E')
+			game->exit_visit = 1;
 		return ;
+	}
+	if (game->map[height][width] == 'C')
+		game->collectables_check++;
 	visited[height][width] = 1;
 	visiting(game, height + 1, width, visited);
 	visiting(game, height - 1, width, visited);
@@ -23,31 +30,31 @@ static void	visiting(t_idk *game, int height, int width, int **visited)
 	visiting(game, height, width - 1, visited);
 }
 
-static int	check_c_and_e(t_idk *game, int height, int **visited)
+static int	check_valid(t_idk *game, int height, int **visited)
 {
 	int	path;
 	int	width;
 
-	width = 0;
 	path = 1;
 	while (height < game->heightmap)
 	{
 		width = 0;
 		while (width < game->widthmap)
 		{
-			if ((game->map[height][width] == 'C'
-				|| game->map[height][width] == 'E')
+			if ((game->map[height][width] == 'C')
 				&& !visited[height][width])
 			{
 				path = 0;
 				break ;
 			}
-			width++;
+			width ++;
 		}
 		if (!path)
 			break ;
 		height++;
 	}
+	if (game->exit_visit == 1 && game->collectables_check < game->collectables)
+		path = 0;
 	return (path);
 }
 
@@ -56,25 +63,25 @@ int	check_path(t_idk *game)
 	int			height;
 	static int	**visited;
 
-	visited = malloc(game->heightmap * sizeof(int *));
+	visited = ft_calloc(game->heightmap, sizeof(int *));
 	height = 0;
 	while (height < game->heightmap)
 	{
-		visited[height] = calloc(game->widthmap, sizeof(int));
+		visited[height] = ft_calloc(game->widthmap, sizeof(int));
 		height++;
 	}
 	visiting(game, game->j, game->i, visited);
 	height = 0;
-	if (!check_c_and_e(game, height, visited))
-	{
-		ft_printf("Error\nNot all collectables or exits are reachable!\n");
-		return (0);
-	}
 	while (height < game->heightmap)
 	{
 		free(visited[height]);
 		height++;
 	}
 	free(visited);
+	if (!check_valid(game, height, visited))
+	{
+		ft_printf("Error\nNot all collectables or exits are reachable!\n");
+		return (0);
+	}
 	return (1);
 }

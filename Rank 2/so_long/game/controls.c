@@ -6,7 +6,7 @@
 /*   By: maugusto <maugusto@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/29 12:29:09 by maugusto          #+#    #+#             */
-/*   Updated: 2024/06/18 17:49:52 by maugusto         ###   ########.fr       */
+/*   Updated: 2024/06/27 12:05:19 by maugusto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,11 +85,11 @@ static int	move_up_down(int key_code, t_idk *game, int j, int i)
 	return (1);
 }
 
-static void put_movement(t_idk *game)
+static void	put_movement(t_idk *game)
 {
-	int width; 
-	int height;
-	
+	int	width;
+	int	height;
+
 	height = 0;
 	while (height < game->heightmap)
 	{
@@ -98,10 +98,10 @@ static void put_movement(t_idk *game)
 		{
 			if (game->map[height][width] == '0')
 				mlx_put_image_to_window(game->mlx,
-				game->window, game->floor, width * 124, height * 124);
+					game->window, game->floor, width * 124, height * 124);
 			if (game->map[height][width] == 'P')
 				mlx_put_image_to_window(game->mlx,
-				game->window, game->player1, width * 124, height * 124);
+					game->window, game->player1, width * 124, height * 124);
 			width++;
 		}
 		height++;
